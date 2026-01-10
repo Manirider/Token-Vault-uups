@@ -1,0 +1,145 @@
+﻿================================================================================
+                    TokenVault UUPS — Test Suite Results
+================================================================================
+
+  TokenVaultV1
+    Initialization
+      ✓ should initialize with correct parameters
+      ✓ should grant admin and upgrader roles to admin
+      ✓ should prevent reinitialization
+      ✓ should reject zero token address
+      ✓ should reject zero admin address
+      ✓ should reject deposit fee exceeding maximum
+    Deposits
+      ✓ should allow deposits and update balances
+      ✓ should deduct deposit fee correctly
+      ✓ should emit Deposit event with correct values
+      ✓ should handle zero fee correctly
+      ✓ should reject zero amount deposits
+      ✓ should handle multiple deposits from same user
+    Withdrawals
+      ✓ should allow withdrawals and update balances
+      ✓ should emit Withdraw event
+      ✓ should prevent withdrawal of more than balance
+      ✓ should allow full balance withdrawal
+      ✓ should update total deposits on withdrawal
+    Access Control
+      ✓ should prevent unauthorized upgrades
+      ✓ should allow authorized upgrades
+
+  Upgrade V1 to V2
+    State Preservation
+      ✓ should preserve user balances after upgrade
+      ✓ should preserve total deposits after upgrade
+      ✓ should maintain admin access control after upgrade
+      ✓ should preserve token address after upgrade
+    Yield Rate
+      ✓ should allow setting yield rate in V2
+      ✓ should emit YieldRateUpdated event
+      ✓ should prevent non-admin from setting yield rate
+      ✓ should reject yield rate exceeding maximum
+    Yield Calculation
+      ✓ should calculate yield correctly
+      ✓ should return 0 yield for users without initialized tracking
+      ✓ should return 0 yield for users with zero balance
+      ✓ should initialize yield tracking on first V2 deposit
+    Yield Claiming
+      ✓ should allow claiming yield
+      ✓ should emit YieldClaimed event
+      ✓ should reset yield after claim
+      ✓ should revert when no yield to claim
+    Pause Functionality
+      ✓ should allow pausing deposits in V2
+      ✓ should emit DepositsPaused event
+      ✓ should allow unpausing deposits
+      ✓ should allow withdrawals even when paused
+      ✓ should prevent non-pauser from pausing
+    Version
+      ✓ should return V2 version
+
+  Upgrade V2 to V3
+    State Preservation
+      ✓ should preserve all V2 state after upgrade
+      ✓ should preserve admin roles after upgrade
+      ✓ should preserve pause state after upgrade
+    Withdrawal Delay
+      ✓ should allow setting withdrawal delay
+      ✓ should emit WithdrawalDelayUpdated event
+      ✓ should prevent non-admin from setting delay
+      ✓ should reject delay exceeding maximum
+    Withdrawal Requests
+      ✓ should handle withdrawal requests correctly
+      ✓ should emit WithdrawalRequested event
+      ✓ should reject withdrawal request for zero amount
+      ✓ should reject withdrawal request exceeding balance
+      ✓ should cancel previous request when new one is made
+    Withdrawal Execution
+      ✓ should enforce withdrawal delay
+      ✓ should prevent premature withdrawal execution
+      ✓ should allow withdrawal after delay passes
+      ✓ should emit WithdrawalExecuted event
+      ✓ should clear request after execution
+      ✓ should reject execution without request
+      ✓ should reject if balance decreased after request
+    Emergency Withdrawal
+      ✓ should allow emergency withdrawals
+      ✓ should emit EmergencyWithdrawal event
+      ✓ should bypass withdrawal delay
+      ✓ should clear pending withdrawal request
+      ✓ should reject emergency withdraw with zero balance
+      ✓ should withdraw full balance
+    Version
+      ✓ should return V3 version
+    V2 Features Still Work
+      ✓ should still allow yield operations
+      ✓ should still allow pause operations
+    Direct Withdraw Protection
+      ✓ should block direct withdraw() calls in V3
+      ✓ should enforce using requestWithdrawal flow
+    Fee Withdrawal
+      ✓ should allow admin to withdraw collected fees
+      ✓ should emit FeesWithdrawn event
+      ✓ should prevent non-admin from withdrawing fees
+      ✓ should revert when no fees to withdraw
+    Emergency Withdrawal When Paused
+      ✓ should allow emergency withdrawal even when deposits paused
+      ✓ should still allow yield claiming when paused
+
+  Security Tests
+    Implementation Initialization
+      ✓ should prevent direct initialization of implementation contracts
+      ✓ should prevent direct initialization of V2 implementation
+      ✓ should prevent direct initialization of V3 implementation
+    Upgrade Authorization
+      ✓ should prevent unauthorized upgrades
+      ✓ should allow authorized upgrades
+      ✓ should emit UpgradeAuthorized event
+    Storage Layout
+      ✓ should use storage gaps for future upgrades
+      ✓ should not have storage layout collisions across versions
+      ✓ should validate V2 to V3 upgrade compatibility
+      ✓ should validate direct V1 to V3 upgrade compatibility
+    Function Selector Clashing
+      ✓ should prevent function selector clashing
+      ✓ should not clash between versions
+    Role Separation
+      ✓ should have separate upgrader role from admin
+      ✓ should allow revoking upgrader role
+    Reentrancy Protection
+      ✓ should have reentrancy protection on deposit
+    Input Validation
+      ✓ should reject invalid parameters in initialize
+      ✓ should enforce maximum deposit fee
+      ✓ should enforce maximum yield rate
+      ✓ should enforce maximum withdrawal delay
+
+================================================================================
+                              SUMMARY
+================================================================================
+
+  96 passing (9s)
+  0 failing
+
+================================================================================
+  All tests passed successfully!
+================================================================================
