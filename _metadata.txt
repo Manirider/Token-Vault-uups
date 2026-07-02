@@ -1,0 +1,8 @@
+Repository: Token-Vault-uups
+Description: Upgradeable TokenVault smart contracts using UUPS proxy pattern with secure initialization, role-based access control, and upgrade-safe storage design.
+Topics: portfolio-project
+
+GitHub Settings Updates:
+1. Go to https://github.com/Manirider/Token-Vault-uups/settings
+2. Update the Description field to: Upgradeable TokenVault smart contracts using UUPS proxy pattern with secure initialization, role-based access control, and upgrade-safe storage design.
+3. Add the following tags under Topics: portfolio-project
